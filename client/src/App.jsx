@@ -4,18 +4,20 @@ import axios from 'axios'
 import './App.css'
 
 function App() {
+  const validFiles = ["jpg","JPG","JPEG","PNG", "jpeg", "png", "gif", "bmp", "tif", "tiff", "svg", "webp"]
+
+  const [valid,setValid] = useState(false)
   const [file,setFile] = useState()
   const [uploadMessage,setUploadMessage] = useState('')
   const [getdata,setGetdata] = useState([])
   const handleFile =(e)=>{
-    console.log(e)
     setFile(e.target.files[0])
-    
+    const ext = e.target.files[0].name.slice(e.target.files[0].name.lastIndexOf('.')+1,)
+    validFiles.includes(ext)?setValid(true):setValid(false)
   }
   async function handleFetch(){
     try{
       let res = await axios.get('http://127.0.0.1:3000/api/getImagesData')
-      console.log(res.data)
       setGetdata(res.data)
       if(!res.data.length){
         setUploadMessage(`Couldn't find any files in DB`);
@@ -31,7 +33,7 @@ function App() {
 
   const handleUpload = () =>{
     const formData = new FormData();
-    if(file){
+    if(file && valid){
       formData.append('file',file)
     axios.post('http://127.0.0.1:3000/api/uploads',formData)
     .then(res=>{
@@ -40,13 +42,17 @@ function App() {
         setTimeout(() => {
           setUploadMessage('')
         }, 1500);
+        setTimeout(() => {
+          setValid(false)
+        });
       }
     })
     .catch(e=>console.log(e))
     }else{
-      setUploadMessage('Please select a file')
+      setUploadMessage('Please select a valid file')
       setTimeout(() => {
         setUploadMessage('')
+
       }, 1500);
     }
     
@@ -70,6 +76,7 @@ function App() {
         <th>Upload Date</th>
         <th>Links</th>
       </tr>
+      <tbody>
       {getdata.map((e, key) => {
                     return (
                         <tr key={key}>
@@ -83,6 +90,7 @@ function App() {
                     )
                 })}
                 <></>
+      </tbody>
       
     </table>
     </div>:<></>}
