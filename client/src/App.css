@@ -1,0 +1,20 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+table,th,td,a,.div1{
+  border: 0.5px solid   rgb(5, 10, 7);
+}
+.imagespace,.link{
+  max-width: 150px;
+  max-height: 150px;
+  cursor: pointer;
+}
+.div1{
+  border: 0.5px solid purple;
+}
+
+
+
