@@ -4,8 +4,8 @@ clone the repo
 git clone https://github.com/pi-3-1-4/Image_Upload_Display.git
 
 after cloning, you will find two folders i.e, 
- /client
- /server
+ /client built on REACT
+ /server built on NODE.JS (MongoDB)
 
 for /client-
   follow the commands-
