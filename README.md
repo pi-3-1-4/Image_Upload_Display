@@ -7,12 +7,15 @@ after cloning, you will find two folders i.e,
  /client built on REACT
  /server built on NODE.JS (MongoDB)
 
+
 for /client-
   follow the commands-
        cd .\Image_Upload_Display\client\
        npm i
        npm run start
        client port: http://localhost:5173/
+
+
 for /server-
   follow the commands-
        cd .\Image_Upload_Display\server\
