@@ -16,7 +16,8 @@ for /client-
        client port: http://localhost:5173/
 
 
-for /server-
+for /server-\
+  please delete the image present in the folder .\server\uploads\
   follow the commands-
        cd .\Image_Upload_Display\server\
        npm i
